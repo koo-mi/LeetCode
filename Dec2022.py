@@ -1,3 +1,5 @@
+import re
+
 """
 Question 118 - Pascal's Triangle
 2022-12-02
@@ -54,7 +56,7 @@ class Solution:
         return output
 
     def maxProfit3(self, prices: list[int]) -> int:
-        # Third approach
+        # Third approach - Successful
         left, right = 0, 1  # Buy, Sell
         output = 0
         while right < len(prices):
@@ -67,3 +69,42 @@ class Solution:
             right += 1
         return output
 
+    """
+    Question 125 - Valid Palindrome
+    2022-02-04
+    """
+    def isPalindrome(self, s: str) -> bool:
+        # Approach 1 - comparing each letter - Successful
+        # leave only number / letters and make it lower case
+        s1 = re.sub(r"[^0-9A-Za-z]", '', s).lower()
+
+        # if the length is 0 or 1, return True
+        if len(s1) == 0 or len(s1) == 1:
+            return True
+        # if the length is greater than 1, find the halfway point
+        elif len(s1) % 2 == 0:
+            half = len(s1) // 2
+        else:
+            half = len(s1) // 2 + 1
+
+        # check if the forward and backward are the same
+        for i in range(1, half+1):
+            if s1[i-1] != s1[-i]:
+                return False
+        return True
+
+    def isPalindrome2(self, s: str) -> bool:
+        # taking different approach using slicing - Successful
+        s1 = re.sub(r"[^0-9A-Za-z]", '', s).lower()
+
+        if len(s1) == 0 or len(s1) == 1:
+            return True
+        elif len(s1) % 2 == 0:
+            half = len(s1) // 2
+        else:
+            half = len(s1) // 2 + 1
+
+        if s1[:half] == s1[::-1][:half]:
+            return True
+        else:
+            return False
