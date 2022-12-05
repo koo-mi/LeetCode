@@ -108,3 +108,34 @@ class Solution:
             return True
         else:
             return False
+
+    """
+    Question 136 - Single Number
+    2022-12-05
+    """
+    def singleNumber(self, nums: list[int]) -> int:
+        # Approach 1 using sets
+        nums_c = nums.copy()
+        origin = set(nums)
+
+        for items in origin:
+            nums_c.remove(items)
+
+        output = list(origin.symmetric_difference(nums_c))[0]
+
+        return output
+
+    def singleNumber2(self, nums: list[int]) -> int:
+        # Approach 2 by removing each element from the list
+        if len(nums) % 2 == 0:
+            rep = len(nums) // 2
+        else:
+            rep = len(nums) // 2 + 1
+
+        for i in range(rep):
+            output = nums[0]
+            try:
+                nums.remove(output)
+                nums.remove(output)
+            except:
+                return output
