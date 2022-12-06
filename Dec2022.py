@@ -139,3 +139,44 @@ class Solution:
                 nums.remove(output)
             except:
                 return output
+
+    """
+    Question 169 - Majority Element
+    2022-12-06
+    """
+    def majorityElement(self, nums: list[int]):
+        # Approach 1 - sort the list and check the index of the middle
+        nums = sorted(nums)
+        n = (len(nums) / 2).__ceil__()-1
+        return nums[n]
+
+    def majorityElement2(self, nums: list[int]):
+        # Approach 2 - without ceil
+        nums = sorted(nums)
+        l = len(nums)
+        # even number
+        if l % 2 == 0:
+            n = l/2 - 1
+        # odd number
+        else:
+            n = (l+1) / 2 - 1
+        return nums[int(n)]
+
+    def majorityElement3(self, nums: list[int]):
+        # Approach 3 - without condition
+        nums = sorted(nums)
+        n = len(nums) // 2
+        return nums[n]
+
+    def majorityElement4(self, nums: list[int]):
+        # Approach 4 - count each element until it reaches
+        n = len(nums) / 2   # When to stop
+        di = {}             # To save counts
+        for element in nums:
+            if element in di:
+                di[element] += 1     # If element already in di
+            else:
+                di[element] = 1     # If element is not in di, create new
+
+            if di[element] > n:     # If the value exceed n, return
+                return element
