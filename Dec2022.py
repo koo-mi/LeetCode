@@ -1,4 +1,5 @@
 import re
+import string
 
 """
 Question 118 - Pascal's Triangle
@@ -180,3 +181,25 @@ class Solution:
 
             if di[element] > n:     # If the value exceed n, return
                 return element
+    """
+    Question 171 - Excel Sheet Column Number
+    2022-12-07
+    """
+    def titleToNumber(self, columnTitle: str) -> int:
+        # First Approach
+        number = [
+            ord(char) - 64 for char in columnTitle
+        ]
+        sum = 0
+        for i, j in enumerate(number[::-1]):
+            sum += 26**i * j
+        return sum
+
+    def titleToNumber2(self, columnTitle: str) -> int:
+        # Second Approach
+        sum = 0
+        for i, j in enumerate(columnTitle[::-1]):
+            sum += 26**i * (ord(j) - 64)
+        return sum
+
+
