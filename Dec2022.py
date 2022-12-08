@@ -201,5 +201,17 @@ class Solution:
         for i, j in enumerate(columnTitle[::-1]):
             sum += 26**i * (ord(j) - 64)
         return sum
+    """
+    Question 190 - Reverse Bits
+    2022-12-08
+    """
+    def reverseBits(self, n: int) -> int:
+        b = str(bin(n))[2:]         # Slicing to remove "0b"
+        b = "0"*(32-len(b)) + b     # To match 32 digits
+        output = 0
+        for i in range(32):
+            output += int(b[i]) * 2**i
+        return output
+
 
 
