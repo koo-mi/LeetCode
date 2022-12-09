@@ -212,6 +212,18 @@ class Solution:
         for i in range(32):
             output += int(b[i]) * 2**i
         return output
+    """
+    Question 191 - Number of 1 Bits
+    2022-12-09
+    """
+    def hammingWeight(self, n: int) -> int:
+        b = str(bin(n))[2:]
+        print(b)
+        count = 0
+        for i in range (len(b)):
+            if b[i] == "1":
+                count += 1
+        return count
 
 
 
